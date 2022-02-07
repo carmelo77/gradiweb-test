@@ -2,16 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+.size-options-default {
+    @apply
+    border-2 
+    mx-2 
+    px-1 
+    py-1 
+    cursor-pointer w-10 
+    text-center 
+    border-gray-200
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.size-options-active {
+    @apply
+    border-2 
+    mx-2 
+    px-1 
+    py-1 
+    cursor-pointer w-10 
+    text-center 
+    border-black
 }
