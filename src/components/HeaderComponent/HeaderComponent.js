@@ -2,7 +2,7 @@
 export default function HeaderComponent() {
 	return (
 		<div 
-			className="bg-gradient-to-r from-blue-300 to-blue-500 h-10"
+			className="w-100 bg-gradient-to-r from-blue-300 to-blue-500 h-10"
 		>
 		</div>
 	);

@@ -126,7 +126,7 @@ export default function InfoComponent({ product }) {
 
 			<LineDivider />
 
-			<div className='py-4 flex'>
+			<div className='py-4 grid lg:grid-cols-12 sm:grid-cols-4 gap-4 sm:gap-2'>
 				<span className='pt-1 mr-2'>Size: </span>
 				{
 					sizes.length > 0 && (
@@ -151,12 +151,12 @@ export default function InfoComponent({ product }) {
 				product={ product }
 			/>
 
-			<div className='btn-actions py-4 flex'>
-				<a className='px-4 py-4 w-1/2 bg-gray-100 text-center font-medium cursor-pointer'>
+			<div className='btn-actions'>
+				<a className='btn-gray'>
 					Add to favourite
 				</a>
 				<a 
-					className='px-4 py-4 w-1/2 bg-black text-center text-white font-medium cursor-pointer' 
+					className='btn-black' 
 					onClick={ () => setModalConfirm(true) }
 				>
 					Add to Cart
@@ -164,7 +164,7 @@ export default function InfoComponent({ product }) {
 			</div>
 
 			<div
-				className='text-gray-500'
+				className='text-gray-500 py-2 sm:mb-8'
 				dangerouslySetInnerHTML={{__html: product.description}} 
 			/>
 
@@ -172,6 +172,8 @@ export default function InfoComponent({ product }) {
 				modalConfirm={ modalConfirm }
 				setModalConfirm={ setModalConfirm }
 				sendProductCart={ sendProductCart }
+				product={ product }
+				currentSize={ currentSize }
 			/>
 			
 		</>
@@ -180,7 +182,7 @@ export default function InfoComponent({ product }) {
 
 function LineDivider() {
 	return (
-		<div className="relative flex py-5 items-center">
+		<div className="relative flex py-5 items-center text-justify">
 			<div className="flex-grow border-t border-gray-300"></div>
 		</div>
 	)
@@ -213,7 +215,7 @@ function ViewSize({ currentSize, size, setCurrentSize }) {
 
 function SectionQtyAndPrices({ qtyProduct, decreaseQtyProduct, increaseQtyProduct, product }) {
 	return (
-		<div className='qtyandprices flex justify-between items-center py-6'>
+		<div className='qtyandprices flex justify-between py-6'>
 			<div className='flex px-1 border-2 rounded-md'>
 				<a 
 					className='py-2 px-2 cursor-pointer'
@@ -232,8 +234,8 @@ function SectionQtyAndPrices({ qtyProduct, decreaseQtyProduct, increaseQtyProduc
 				</a>
 			</div>
 			<div>
-				<span className='text-gray-400'>Total price: </span>
-				<span className='font-bold'>
+				<span className='text-gray-400 sm:text-xs lg:text-md'>Total price: </span>
+				<span className='font-bold sm:text-xs lg:text-md'>
 					$ { parseFloat(product.price * qtyProduct).toFixed(2) }
 				</span>
 			</div>

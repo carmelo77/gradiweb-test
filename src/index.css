@@ -9,7 +9,8 @@
     mx-2 
     px-1 
     py-1 
-    cursor-pointer w-10 
+    cursor-pointer 
+    w-10
     text-center 
     border-gray-200
 }
@@ -20,7 +21,42 @@
     mx-2 
     px-1 
     py-1 
-    cursor-pointer w-10 
+    cursor-pointer 
+    w-10
     text-center 
     border-black
+}
+
+.btn-actions {
+    @apply
+    py-4
+    flex
+    lg:flex-row
+    justify-center
+    items-center
+    sm:flex-col
+    sm:gap-y-4
+}
+
+.btn-gray {
+    @apply
+    px-4 
+    py-4 
+    bg-gray-100 
+    text-center 
+    font-medium 
+    cursor-pointer
+    w-full
+}
+
+.btn-black {
+    @apply
+    px-4 
+    py-4 
+  bg-black 
+    text-center 
+    text-white 
+    font-medium 
+    cursor-pointer
+    w-full
 }

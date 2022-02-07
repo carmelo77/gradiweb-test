@@ -25,8 +25,8 @@ export default function Content() {
 		<>
 			{
 				!!(product) && (
-					<div className='w-100 flex'>
-						<div className='w-2/5 text-white px-4'>
+					<div className='grid md:grid-cols-2 sm:grid-cols-1'>
+						<div className='w-full text-white px-4'>
 							{
 								product.images.length > 0 && (
 									<GalleryImgComponent 
@@ -35,7 +35,7 @@ export default function Content() {
 								)
 							}
 						</div>
-						<div className='w-3/5 py-8 px-12'>
+						<div className='w-full lg:py-8 md:py-4 px-12'>
 							<InfoComponent 
 								product={ product }
 							/>

@@ -11,9 +11,11 @@ function App() {
   return (
     <Provider store={ store }>
 
-      <HeaderComponent />
-      
-      <ContentComponent />
+      <div className='w-full mx-auto'>
+        <HeaderComponent />
+        
+        <ContentComponent />
+      </div>
       
     </Provider>
   );
