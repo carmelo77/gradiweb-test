@@ -11,7 +11,6 @@ export default function Content() {
 	const index = async () => {
 		try {
 			const response = await getProduct();
-			console.log(response);
 			setProduct(response);
 		} catch (err) {
 			console.log(err);

@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { useForm } from '../../hooks/useForm';
 import ModalComponent from '../ModalComponent';
+import { addProductToCart } from '../../actions/cart';
 
 export default function InfoComponent({ product }) {
+
+	const dispatch = useDispatch();
 
 	const [currentColor, setCurrentColor] = useState('');
 	const [currentSize, setCurrentSize] = useState('');
@@ -21,17 +25,17 @@ export default function InfoComponent({ product }) {
 	]
 
 	const searchColor = () => {
-		const result = product?.options.some(opt => opt.name.toLocaleLowerCase() == 'color');
+		const result = product?.options.some(opt => opt.name.toLocaleLowerCase() === 'color');
 		if(result) {
-			const { values } = product?.options.find(opt => opt.name.toLocaleLowerCase() == 'color');
+			const { values } = product?.options.find(opt => opt.name.toLocaleLowerCase() === 'color');
 			setColors( values );
 		}
 	}
 
 	const searchSize = () => {
-		const result = product?.options.some(opt => opt.name.toLocaleLowerCase() == 'size');
+		const result = product?.options.some(opt => opt.name.toLocaleLowerCase() === 'size');
 		if(result) {
-			const { values } = product?.options.find(opt => opt.name.toLocaleLowerCase() == 'size');
+			const { values } = product?.options.find(opt => opt.name.toLocaleLowerCase() === 'size');
 			setSizes( values );
 		}
 	}
@@ -48,15 +52,17 @@ export default function InfoComponent({ product }) {
 
 	const sendProductCart = () => {
 		const prod = {
+			id: product.id,
 			name: product.title,
 			description: product.description,
 			qty: qtyProduct,
 			color: formValues.color,
 			size: currentSize,
-			price: product.price * qtyProduct
+			price: product.price
 		}
 
-		console.log(prod);
+		dispatch( addProductToCart(prod) );
+		setModalConfirm(false);
 	}
 
 	useEffect(() => {
@@ -67,11 +73,11 @@ export default function InfoComponent({ product }) {
 	}, [product]);
 
 	useEffect(() => {
-		if(formValues.color != '') {
-			let found = eqColors.some( color => color.val.toLocaleLowerCase() == formValues.color.toLocaleLowerCase() );
+		if(formValues.color !== '') {
+			let found = eqColors.some( color => color.val.toLocaleLowerCase() === formValues.color.toLocaleLowerCase() );
 
 			if(found) {
-				let find = eqColors.find( color => color.val.toLocaleLowerCase() == formValues.color.toLocaleLowerCase() );
+				let find = eqColors.find( color => color.val.toLocaleLowerCase() === formValues.color.toLocaleLowerCase() );
 				setCurrentColor(find.text);
 			} else {
 				setCurrentColor('');
@@ -83,7 +89,7 @@ export default function InfoComponent({ product }) {
 	return (
 		<>
 			<span className='text-gray-400'>
-				By credit Shoes
+				By Nike x ALYX
 			</span>
 			<div className='text-3xl font-bold'>
 				{ product.title }

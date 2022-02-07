@@ -1,20 +1,21 @@
-import { useEffect } from 'react';
+import { Provider } from 'react-redux';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 /** */
 import HeaderComponent from './components/HeaderComponent';
 import ContentComponent from './views/Content';
+import { store } from './store/store';
 
 function App() {
 
   return (
-    <div>
+    <Provider store={ store }>
 
       <HeaderComponent />
       
       <ContentComponent />
       
-    </div>
+    </Provider>
   );
 }
 
