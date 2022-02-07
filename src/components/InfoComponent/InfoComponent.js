@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { useForm } from '../../hooks/useForm';
+import ModalComponent from '../ModalComponent';
 
 export default function InfoComponent({ product }) {
 
@@ -9,6 +10,7 @@ export default function InfoComponent({ product }) {
 	const [colors, setColors] = useState([]);
 	const [sizes, setSizes] = useState([]);
 	const [qtyProduct, setqQtyProduct] = useState(1);
+	const [modalConfirm, setModalConfirm] = useState(false);
 	const [ formValues, handleInputChange ] = useForm({
 		color: '',
 	});
@@ -42,6 +44,19 @@ export default function InfoComponent({ product }) {
 		if(qtyProduct > 1) {
 			setqQtyProduct( qty => qty - 1);
 		}
+	}
+
+	const sendProductCart = () => {
+		const prod = {
+			name: product.title,
+			description: product.description,
+			qty: qtyProduct,
+			color: formValues.color,
+			size: currentSize,
+			price: product.price * qtyProduct
+		}
+
+		console.log(prod);
 	}
 
 	useEffect(() => {
@@ -134,7 +149,10 @@ export default function InfoComponent({ product }) {
 				<a className='px-4 py-4 w-1/2 bg-gray-100 text-center font-medium cursor-pointer'>
 					Add to favourite
 				</a>
-				<a className='px-4 py-4 w-1/2 bg-black text-center text-white font-medium cursor-pointer'>
+				<a 
+					className='px-4 py-4 w-1/2 bg-black text-center text-white font-medium cursor-pointer' 
+					onClick={ () => setModalConfirm(true) }
+				>
 					Add to Cart
 				</a>
 			</div>
@@ -143,6 +161,13 @@ export default function InfoComponent({ product }) {
 				className='text-gray-500'
 				dangerouslySetInnerHTML={{__html: product.description}} 
 			/>
+
+			<ModalComponent 
+				modalConfirm={ modalConfirm }
+				setModalConfirm={ setModalConfirm }
+				sendProductCart={ sendProductCart }
+			/>
+			
 		</>
 	)
 }
